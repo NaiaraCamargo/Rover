@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ROVER</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div
+        class="splash-background splash-background-dotted template-wrapper theme-pink theme-secondary theme-secondary-black">
+        <div class="splash-screen toggle-down " style="position: absolute;">
+            <div id="loginPage" class="login container">
+                <div class="table-wrapper">
+                    <div class="table-cell">
+                        <div class="card card-splash">
+                            <div class="card-header">
+                                <h2>Login</h2>          
+                            </div>
+                            <div class="card-base">
+                                <div class="card-content processing">
+                                    <form class="login-with-password">
+                                        <div class="form-group form-group-icon">
+                                            <input autocomplete="" autofocus="" class="form-control form-control-lg"
+                                                id="loginNameInput" placeholder="Digite seu usuario" required=""
+                                                type="text">
+                                        </div>
+                                        <div class="form-group form-group-icon">
+                                            <span class="component-hint block">
+                                                <input class="form-control form-control-lg can-be-visible"
+                                                    type="password" id="loginPasswordInput" maxlength="20"
+                                                    placeholder="Digite sua senha" required="true">
+                                            </span>
+                                        </div>
+                                        <div class="form-group d-flex justify-content-between">
+                                            <div class="checkbox d-flex align-items-center">
+                                                <input type="checkbox" value="" class="show-password-check"
+                                                    id="showPassword" name="show-password">
+                                                <label for="show-password" class="mb-0">Exibir senha</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <button id="btnLogin" class="btn1 btn-lg btn-bold btn-login full-x btn-theme">
+                                                    <span> 
+                                                      Entrar
+                                                    </span>
+                                                  </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js"></script>
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+</body>
+
+</html>

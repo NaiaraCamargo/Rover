@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ROVER</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styleRover.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div
+        class="splash-background splash-background-dotted template-wrapper theme-pink theme-secondary theme-secondary-black">
+        <div class="splash-screen toggle-down " style="position: absolute;">
+            <div class="roverPage" id="roverPage">
+                <div class="roverArea">
+                    <div class="rangePower">
+                        <div id="number">0</div>
+                        <input type="range" min="0" max="255" value="0" step="1" id="slider" />
+                        <div id="textVel">VELOCIDADE ROVER</div>
+                    </div>
+
+                    <div class="roverControll">
+                        <div id="textControll">DIREÇÃO</div>
+
+                        <button type="button" id="btnW" class="btn btn-light">ANDAR</button>
+                        <button type="button" id="btnA" class="btn btn-light">ESQUERDA</button>
+                        <button type="button" id="btnD" class="btn btn-light">DIREITA</button>
+                        <button type="button" id="btnS" class="btn btn-light">RE</button>
+
+                    </div>
+
+                    <button id="btnLogout" class="btnLog">
+                        <span>
+                            Sair
+                        </span>
+                    </button>
+
+                    <div id="streaming" class="roverStreaming">
+                    </div>
+                    
+                    <div class="roverMap">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="rover.js"></script>
+               
+</body>
+
+</html>
