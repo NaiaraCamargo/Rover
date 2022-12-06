@@ -21,6 +21,13 @@ const socket = io();
   let videoStream;
   let streamingVideo;
 
+  function stopVideoStream() {
+    if (videoStream) {
+      videoStream.getTracks().forEach((track) => {
+        track.stop();
+      });
+    }
+  }
  
   // initialize
   async function initializeCamera() {
@@ -35,9 +42,11 @@ const socket = io();
     }
   }
  
+
+
   initializeCamera();
 
-  streamingVideo = "videoStream";
+  streamingVideo = video.srcObject;
   socket.emit('streaming-request', streamingVideo);
 
   socket.on('streaming-ok', (streamingVideo) => { 
@@ -109,14 +118,6 @@ const socket = io();
     });
    
     // stop video stream
-    function stopVideoStream() {
-      if (videoStream) {
-        videoStream.getTracks().forEach((track) => {
-          track.stop();
-        });
-      }
-    }
-   
 
 });
   
