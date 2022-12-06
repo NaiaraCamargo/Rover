@@ -20,6 +20,8 @@ const socket = io();
   // current video stream
   let videoStream;
   let streamingVideo;
+    // use front face camera
+    let useFrontCamera = true;
 
   function stopVideoStream() {
     if (videoStream) {
