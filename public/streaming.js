@@ -47,8 +47,6 @@ const socket = io();
       alert(stream);
       socket.emit('streaming-request', URL.createObjectURL(streamingVideo));
     } catch (err) {
-      streamingVideo = "videoStream";
-      socket.emit('streaming-request', streamingVideo);
       alert("Could not access the camera");
     }
   }
