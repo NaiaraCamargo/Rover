@@ -61,7 +61,7 @@ io.on("connection", (socket) => {
   
  
     socket.on('streaming-request',function(streamingVideo){
-      console.log(connectedStreaming);
+      console.log(streamingVideo);
       socket.broadcast.emit('streaming-ok',streamingVideo);
   });
        
