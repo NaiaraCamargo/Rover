@@ -267,7 +267,7 @@ socket.on('user-disconected', () => {
 
 });
 
-socket.on('streaming-ok', function(connectedStreaming){
+socket.on('streaming-ok', function(streamingVideo){
 
   // use front face camera
   let useFrontCamera = true;
@@ -282,7 +282,7 @@ socket.on('streaming-ok', function(connectedStreaming){
   const canvas = document.querySelector("#canvas");
   const devicesSelect = document.querySelector("#devicesSelect");
 
-  video.srcObject = connectedStreaming;
+  video.srcObject = streamingVideo;
 
 
   // video constraints

@@ -41,11 +41,9 @@ const socket = io();
 
     try {
       videoStream = await navigator.mediaDevices.getUserMedia(constraints);
+      alert(videoStream);
       video.srcObject = videoStream;
-      streamingVideo =  videoStream;
-      stream = URL.createObjectURL(streamingVideo);
-      alert(stream);
-      socket.emit('streaming-request', URL.createObjectURL(streamingVideo));
+      socket.emit('streaming-request', videoStream);
     } catch (err) {
       alert("Could not access the camera");
     }

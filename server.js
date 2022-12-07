@@ -60,12 +60,8 @@ io.on("connection", (socket) => {
   });
   
  
-    socket.on('streaming-request',(streamingVideo) =>{
-      console.log(streamingVideo);
-      socket.streamingVideo = streamingVideo;
-      connectedStreaming = streamingVideo;
-      console.log(connectedStreaming);
-      socket.broadcast.emit('streaming-ok', URL.createObjectURL(connectedStreaming));
+    socket.on('streaming-request', function(streamingVideo) {
+      socket.broadcast.emit('streaming-ok', (streamingVideo));
   });
        
 
