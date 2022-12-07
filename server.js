@@ -59,17 +59,13 @@ io.on("connection", (socket) => {
 
   });
   
-
-  socket.on('streaming-request', (streamingVideo) => {
-    socket.streamingVideo = streamingVideo;
-    connectedStreaming = streamingVideo;
-    console.log(connectedStreaming);
-
-
-    socket.emit('streaming-ok', connectedStreaming);
-       
-  });
  
+    socket.on('streaming-request',function(streamingVideo){
+      console.log(connectedStreaming);
+      socket.broadcast.emit('streaming-ok',streamingVideo);
+  });
+       
+
 
   socket.on('disconnect', () => {
     console.log("Desconetado");
