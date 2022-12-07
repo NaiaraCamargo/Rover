@@ -15,6 +15,7 @@ const socket = io();
         ideal: 1080,
         max: 1440,
       },
+      facingMode: "environment"
     },
   };
  
@@ -22,7 +23,7 @@ const socket = io();
   let videoStream;
   let streamingVideo;
     // use front face camera
-  let useFrontCamera = true;
+
 
   function stopVideoStream() {
     if (videoStream) {
@@ -35,14 +36,17 @@ const socket = io();
   // initialize
   async function initializeCamera() {
     stopVideoStream();
-    constraints.video.facingMode = useFrontCamera ? "user" : "environment";
+ 
 
     try {
       videoStream = await navigator.mediaDevices.getUserMedia(constraints);
       video.srcObject = videoStream;
       streamingVideo = videoStream;
+      alert(streamingVideo);
       socket.emit('streaming-request', streamingVideo);
     } catch (err) {
+      streamingVideo = "videoStream";
+      socket.emit('streaming-request', streamingVideo);
       alert("Could not access the camera");
     }
   }

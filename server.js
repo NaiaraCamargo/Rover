@@ -17,7 +17,7 @@ app.set(express.json());
 // landing
 let connectedUser = "";
 let jsonRover =[];
-let connectedStreaming = "";
+let connectedStreaming;
 
 io.on("connection", (socket) => {
   console.log(socket.id);
@@ -60,9 +60,12 @@ io.on("connection", (socket) => {
   });
   
  
-    socket.on('streaming-request',function(streamingVideo){
+    socket.on('streaming-request',(streamingVideo) =>{
       console.log(streamingVideo);
-      socket.broadcast.emit('streaming-ok',streamingVideo);
+      socket.streamingVideo = streamingVideo;
+      connectedStreaming = streamingVideo;
+      console.log(connectedStreaming);
+      socket.broadcast.emit('streaming-ok',connectedStreaming);
   });
        
 
