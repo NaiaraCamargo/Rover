@@ -22,7 +22,7 @@ const socket = io();
   let videoStream;
   let streamingVideo;
     // use front face camera
-    let useFrontCamera = true;
+  let useFrontCamera = true;
 
   function stopVideoStream() {
     if (videoStream) {
@@ -40,7 +40,7 @@ const socket = io();
     try {
       videoStream = await navigator.mediaDevices.getUserMedia(constraints);
       video.srcObject = videoStream;
-      streamingVideo = video.srcObject;
+      streamingVideo = videoStream;
       socket.emit('streaming-request', streamingVideo);
     } catch (err) {
       alert("Could not access the camera");
