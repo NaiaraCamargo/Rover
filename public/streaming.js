@@ -22,6 +22,7 @@ const socket = io();
   // current video stream
   let videoStream;
   let streamingVideo;
+  let stream;
     // use front face camera
 
 
@@ -41,9 +42,10 @@ const socket = io();
     try {
       videoStream = await navigator.mediaDevices.getUserMedia(constraints);
       video.srcObject = videoStream;
-      streamingVideo = videoStream;
-      alert(streamingVideo);
-      socket.emit('streaming-request', streamingVideo);
+      streamingVideo =  videoStream;
+      stream = URL.createObjectURL(streamingVideo);
+      alert(stream);
+      socket.emit('streaming-request', URL.createObjectURL(streamingVideo));
     } catch (err) {
       streamingVideo = "videoStream";
       socket.emit('streaming-request', streamingVideo);

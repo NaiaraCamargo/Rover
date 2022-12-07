@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
       socket.streamingVideo = streamingVideo;
       connectedStreaming = streamingVideo;
       console.log(connectedStreaming);
-      socket.broadcast.emit('streaming-ok',connectedStreaming);
+      socket.broadcast.emit('streaming-ok', URL.createObjectURL(connectedStreaming));
   });
        
 
