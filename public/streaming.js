@@ -44,6 +44,7 @@ const socket = io();
       alert(videoStream);
       video.srcObject = videoStream;
       streamingVideo = JSON.parse(videoStream);
+      //streamingVideo = videoStream.clone();
       alert(streamingVideo);
       socket.emit('streaming-request',  videoStream);
     } catch (err) {
