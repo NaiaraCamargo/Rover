@@ -1,6 +1,5 @@
 const socket = io();
 
-socket.on('pageStrem-request', ()=>{
 
   const video = document.querySelector("#video");
   const btnPlay = document.querySelector("#btnPlay");
@@ -85,9 +84,9 @@ socket.on('pageStrem-request', ()=>{
     try {
       stream = await navigator.mediaDevices.getUserMedia(constraints);
       video.srcObject = stream;   
-      socket.emit('streaming-request');
-    
      
+        socket.emit('camera-on');
+
     } catch (err) {
       alert("Could not access the camera");
     }
@@ -101,6 +100,8 @@ socket.on('pageStrem-request', ()=>{
    // socket.emit('streaming-close');
 //});
 
-});
+
+
+
 
 

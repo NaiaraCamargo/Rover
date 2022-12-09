@@ -10,6 +10,18 @@ const io = socketIO(server);
 const router = express.Router();
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/rover', function (req, res) {
+  res.sendFile(path.join(__dirname, '/public/rover.html'));
+});
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+});
+
+app.get('/streaming', function (req, res) {
+  res.sendFile(path.join(__dirname, '/public/streaming.html'));
+});
+
 app.set(express.urlencoded({ extended: false }));
 
 app.set(express.json());
@@ -17,7 +29,7 @@ app.set(express.json());
 // landing
 let connectedUser = "";
 let jsonRover = [];
-let streaming =[];
+let streaming = [];
 
 io.on("connection", (socket) => {
   console.log(socket.id);
@@ -58,23 +70,11 @@ io.on("connection", (socket) => {
 
   });
 
-
  
-  app.get('/streaming', function (req, res) {      
-    res.sendFile(path.join(__dirname, '/public/streaming.html'));
-    socket.broadcast.emit('pageStrem-request');
-    socket.broadcast.emit('streaming-disconected');
-    console.log("Page coneccted")
-   });
 
- 
-  socket.on('streaming-request', () => {
-    socket.broadcast.emit('streaming-ok');
+  socket.on('camera-on', () => {
+    socket.broadcast.emit('camera-ok');
   });
-
-  
-
-
 
   socket.on('disconnect', () => {
     console.log("Desconetado");

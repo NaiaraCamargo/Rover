@@ -291,22 +291,20 @@ btnLogout.addEventListener('click', (e) => {
 });
 
 socket.on('user-disconected', () => {
-  window.location.href = "index.html";
+  window.location.href = "/index";
 
 });
 
   // current video stream
   let streaming = document.querySelector('#streamingVideo');
-  streamingVideo.style.display = 'none';
+  streaming.style.display = 'none';
 
-socket.on('streaming-ok',()=>{
-
-  streamingVideo.style.display = 'flex';
- // streaming.src = "streaming.html";
+socket.on('camera-ok',()=>{
+  streaming.style.display = 'flex';
+  streaming.src = '/streaming';
 });
 
 socket.on('streaming-disconected',()=>{
-
   streamingVideo.style.display = 'none';
  // streaming.src = "streaming.html";
 });

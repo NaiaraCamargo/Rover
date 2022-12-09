@@ -43,7 +43,7 @@ btnLogin.addEventListener('click', (e) =>{
 
 socket.on('user-ok', () => {
 
-    window.location.href = "rover.html";
+    window.location.href = "/rover";
      
 });
 
