@@ -17,6 +17,7 @@ app.set(express.json());
 // landing
 let connectedUser = "";
 let jsonRover = [];
+let streaming =[];
 
 io.on("connection", (socket) => {
   console.log(socket.id);
@@ -58,9 +59,20 @@ io.on("connection", (socket) => {
   });
 
 
+ 
+  app.get('/streaming', function (req, res) {      
+    res.sendFile(path.join(__dirname, '/public/streaming.html'));
+    socket.broadcast.emit('pageStrem-request');
+    socket.broadcast.emit('streaming-disconected');
+    console.log("Page coneccted")
+   });
+
+ 
   socket.on('streaming-request', () => {
     socket.broadcast.emit('streaming-ok');
   });
+
+  
 
 
 

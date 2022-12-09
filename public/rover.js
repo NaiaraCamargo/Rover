@@ -4,6 +4,7 @@ let btnW = document.getElementById('btnW');
 let btnA = document.getElementById('btnA');
 let btnS = document.getElementById('btnS');
 let btnD = document.getElementById('btnD');
+let btnStop = document.getElementById('btnStop');
 
 let slider = document.getElementById("slider");
 let number = document.getElementById("number");
@@ -18,6 +19,7 @@ var left = false;
 var upPower = false;
 var downPower = false;
 var alt = false;
+var space = false;
 
 function press(e) {
   if (e.keyCode === 87 /* w */) {
@@ -40,6 +42,9 @@ function press(e) {
   }
   if (e.keyCode === 40 /* down */) {
     downPower = true
+  }
+  if(e.keyCode === 32){
+    space = true
   }
 
   controlls()
@@ -70,6 +75,9 @@ function release(e) {
   }
   if (e.keyCode === 18) {
     alt = false
+  }
+  if(e.keyCode === 32){
+    space = false
   }
 
   controlls()
@@ -232,6 +240,26 @@ function controlls() {
 
   }
 
+  if (space) {
+    var data = {
+      "motorPowerRigh": 0,
+      "motorPowerLeft": 0,
+      "motorReverseRight":0,
+      "motorReverseLeft": 0
+    };
+
+
+    btnStop.style.backgroundColor = "red";
+    btnStop.click();
+
+    roverMotor = JSON.stringify(data);
+    socket.emit('rover-motor-power', roverMotor);
+
+  }
+  else{
+    btnStop.style.backgroundColor = "";
+  }
+
   if (upPower) {
     slider.value = parseInt(slider.value) + 1;
     number.innerHTML = slider.value;
@@ -272,5 +300,13 @@ socket.on('user-disconected', () => {
   streamingVideo.style.display = 'none';
 
 socket.on('streaming-ok',()=>{
+
   streamingVideo.style.display = 'flex';
+ // streaming.src = "streaming.html";
+});
+
+socket.on('streaming-disconected',()=>{
+
+  streamingVideo.style.display = 'none';
+ // streaming.src = "streaming.html";
 });

@@ -1,6 +1,7 @@
 const socket = io();
 
-(function () {
+socket.on('pageStrem-request', ()=>{
+
   const video = document.querySelector("#video");
   const btnPlay = document.querySelector("#btnPlay");
   const btnPause = document.querySelector("#btnPause");
@@ -67,14 +68,15 @@ const socket = io();
 
   // stop video stream
   function stopVideoStream() {
-    if (videoStream) {
-      videoStream.getTracks().forEach((track) => {
+    if (stream) {
+      stream.getTracks().forEach((track) => {
         track.stop();
       });
     }
   }
 
-    
+
+  var streaming = [];
   // initialize
   async function initializeCamera() {
     stopVideoStream();
@@ -83,9 +85,6 @@ const socket = io();
     try {
       stream = await navigator.mediaDevices.getUserMedia(constraints);
       video.srcObject = stream;   
-      var teste = document.querySelector("#video").srcObject;
-      localStorage.setItem('video', teste);
-     
       socket.emit('streaming-request');
     
      
@@ -96,8 +95,12 @@ const socket = io();
 
   initializeCamera();
 
-})();
+  //window.addEventListener('beforeunload', function (e) {
+   // e.preventDefault();
+  //  e.returnValue = '';
+   // socket.emit('streaming-close');
+//});
 
-
+});
 
 

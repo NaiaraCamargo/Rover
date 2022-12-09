@@ -183,6 +183,12 @@ input[type="range"]::-webkit-slider-thumb{
   transform: translate(-270%, 250%);
 }
 
+#btnStop{
+  width: 300px;
+    height: 60px;
+    transform: translate(278px, 450px);
+}
+
 
 .btnLog {
     width: 80px;
@@ -242,7 +248,8 @@ input[type="range"]::-webkit-slider-thumb{
 .roverStreaming{
   width:400px;
   height: 500px;
-  transform: translate(240%, 10%);
+  transform:  translate(190%, 10%);;
+  overflow: hidden;
 }
 
 .roverMap {
@@ -254,6 +261,10 @@ input[type="range"]::-webkit-slider-thumb{
 #streamingVideo{
   display: none;
   width: 500px;
-  height: 600px;
+  height: 650px;
+  overflow-y:hidden;
+  overflow: hidden;
 }
+
+
 
