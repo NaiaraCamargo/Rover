@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const socketIO = require('socket.io');
-
+const fs = require('fs');
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
@@ -16,8 +16,7 @@ app.set(express.json());
 
 // landing
 let connectedUser = "";
-let jsonRover =[];
-let connectedStreaming;
+let jsonRover = [];
 
 io.on("connection", (socket) => {
   console.log(socket.id);
@@ -32,15 +31,14 @@ io.on("connection", (socket) => {
 
 
   socket.on('logout-request', () => {
-    console.log(" Desconectado ");
     socket.emit('user-disconected');
 
   });
 
   socket.on('rover-motor', (roverMotor) => {
-  socket.roverMotor = roverMotor;
-  jsonRover = JSON.parse(roverMotor)
-  console.log('Rover Motor:' + roverMotor);
+    socket.roverMotor = roverMotor;
+    jsonRover = JSON.parse(roverMotor)
+    console.log('Rover Motor:' + roverMotor);
 
     app.get("/roverGet", (req, res) => {
       res.json((jsonRover));
@@ -58,17 +56,17 @@ io.on("connection", (socket) => {
     });
 
   });
-  
- 
-    socket.on('streaming-request', function(streamingVideo) {
-      socket.broadcast.emit('streaming-ok', (streamingVideo));
+
+
+  socket.on('streaming-request', () => {
+    socket.broadcast.emit('streaming-ok');
   });
-       
+
 
 
   socket.on('disconnect', () => {
     console.log("Desconetado");
-  
+
   });
 
 });

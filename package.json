@@ -15,8 +15,10 @@
   "license": "ISC",
   "dependencies": {
     "@types/sweetalert": "^2.0.4",
+    "buffer": "^6.0.3",
     "esm": "^3.2.25",
     "express": "^4.17.3",
+    "filereader": "^0.10.3",
     "github": "^14.0.0",
     "module": "^1.2.5",
     "socket.io": "^4.5.4",

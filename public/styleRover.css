@@ -251,4 +251,9 @@ input[type="range"]::-webkit-slider-thumb{
   transform: translate(-30%, 180%);
 }
 
+#streamingVideo{
+  display: none;
+  width: 500px;
+  height: 600px;
+}
 
