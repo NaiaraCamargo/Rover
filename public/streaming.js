@@ -2,16 +2,9 @@ const socket = io();
 
 
   const video = document.querySelector("#video");
-  const btnPlay = document.querySelector("#btnPlay");
-  const btnPause = document.querySelector("#btnPause");
-  const btnScreenshot = document.querySelector("#btnScreenshot");
-  const btnChangeCamera = document.querySelector("#btnChangeCamera");
-  const screenshotsContainer = document.querySelector("#screenshots");
-  const canvas = document.querySelector("#canvas");
-  const devicesSelect = document.querySelector("#devicesSelect");
 
 
-    // video constraints
+  // video constraints
     const constraints = {
       video: {
         width: {
@@ -29,63 +22,33 @@ const socket = io();
     };
 
 
-  let useFrontCamera = true;
+
   let stream;
 
- 
-  // handle events
-  // play
-  btnPlay.addEventListener("click", function () {
-    video.play();
-    btnPlay.classList.add("is-hidden");
-    btnPause.classList.remove("is-hidden");
-  });
-
-  // pause
-  btnPause.addEventListener("click", function () {
-    video.pause();
-    btnPause.classList.add("is-hidden");
-    btnPlay.classList.remove("is-hidden");
-  });
-
-  // take screenshot
-  btnScreenshot.addEventListener("click", function () {
-    const img = document.createElement("img");
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext("2d").drawImage(video, 0, 0);
-    img.src = canvas.toDataURL("image/png");
-    screenshotsContainer.prepend(img);
-  });
-
-  // switch camera
-  btnChangeCamera.addEventListener("click", function () {
-    useFrontCamera = !useFrontCamera;
-
-    initializeCamera();
-  });
 
   // stop video stream
-  function stopVideoStream() {
-    if (stream) {
-      stream.getTracks().forEach((track) => {
-        track.stop();
-      });
-    }
-  }
 
 
   var streaming = [];
   // initialize
   async function initializeCamera() {
-    stopVideoStream();
-    constraints.video.facingMode = useFrontCamera ? "user" : "environment";
-
     try {
       stream = await navigator.mediaDevices.getUserMedia(constraints);
       video.srcObject = stream;   
-     
-        socket.emit('camera-on');
+
+      const mediaRecorder = new MediaRecorder(stream)
+      let countUploadChunk = 0
+      mediaRecorder.ondataavailable = function (e) {
+      streaming.push(e.data);
+      socket.emit('camera-on', streaming);
+       countUploadChunk++
+     }
+
+    mediaRecorder.start()
+
+    setInterval(() => {
+        mediaRecorder.requestData()
+    }, 2000)    
 
     } catch (err) {
       alert("Could not access the camera");

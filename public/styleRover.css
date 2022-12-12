@@ -209,7 +209,7 @@ input[type="range"]::-webkit-slider-thumb{
     font-size: 1rem;
     line-height: 1.25;
     border-radius: 0.25rem;
-    transform: translate(1510px, 3px);
+    transform:translate(1180px, 3px);
     text-transform: uppercase;
  
   }
@@ -249,7 +249,6 @@ input[type="range"]::-webkit-slider-thumb{
   width:400px;
   height: 500px;
   transform:  translate(190%, 10%);;
-  overflow: hidden;
 }
 
 .roverMap {
@@ -258,12 +257,10 @@ input[type="range"]::-webkit-slider-thumb{
   transform: translate(-30%, 180%);
 }
 
-#streamingVideo{
-  display: none;
-  width: 500px;
-  height: 650px;
-  overflow-y:hidden;
-  overflow: hidden;
+
+#videoRover{
+  width: 380px;
+  height: 480px;
 }
 
 

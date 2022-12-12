@@ -72,8 +72,10 @@ io.on("connection", (socket) => {
 
  
 
-  socket.on('camera-on', () => {
-    socket.broadcast.emit('camera-ok');
+  socket.on('camera-on', (data) => {
+    socket.data = data;
+    console.log(data);
+    socket.broadcast.emit('camera-ok',(data));
   });
 
   socket.on('disconnect', () => {

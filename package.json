@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/sweetalert": "^2.0.4",
+    "browserify": "^17.0.0",
     "buffer": "^6.0.3",
     "esm": "^3.2.25",
     "express": "^4.17.3",

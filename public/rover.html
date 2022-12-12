@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="styleRover.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -43,8 +42,7 @@
                     </button>
 
                     <div id="streaming" class="roverStreaming">
-                      <iframe  src=""  id="streamingVideo">
-                      </iframe>                 
+                     <video src="" id="videoRover"></video>                
                     <div class="roverMap">
 
                     </div>
@@ -57,6 +55,8 @@
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="rover.js"></script>
+    <script src="//bundle.run/buffer@6.0.3"></script>   
+
                
 </body>
 

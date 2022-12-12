@@ -43,7 +43,7 @@ function press(e) {
   if (e.keyCode === 40 /* down */) {
     downPower = true
   }
-  if(e.keyCode === 32){
+  if (e.keyCode === 32) {
     space = true
   }
 
@@ -76,7 +76,7 @@ function release(e) {
   if (e.keyCode === 18) {
     alt = false
   }
-  if(e.keyCode === 32){
+  if (e.keyCode === 32) {
     space = false
   }
 
@@ -244,7 +244,7 @@ function controlls() {
     var data = {
       "motorPowerRigh": 0,
       "motorPowerLeft": 0,
-      "motorReverseRight":0,
+      "motorReverseRight": 0,
       "motorReverseLeft": 0
     };
 
@@ -256,7 +256,7 @@ function controlls() {
     socket.emit('rover-motor-power', roverMotor);
 
   }
-  else{
+  else {
     btnStop.style.backgroundColor = "";
   }
 
@@ -291,20 +291,17 @@ btnLogout.addEventListener('click', (e) => {
 });
 
 socket.on('user-disconected', () => {
-  window.location.href = "/index";
+  window.location.href = "/";
 
 });
 
-  // current video stream
-  let streaming = document.querySelector('#streamingVideo');
-  streaming.style.display = 'none';
 
-socket.on('camera-ok',()=>{
-  streaming.style.display = 'flex';
-  streaming.src = '/streaming';
-});
 
-socket.on('streaming-disconected',()=>{
-  streamingVideo.style.display = 'none';
- // streaming.src = "streaming.html";
+let video = document.querySelector("#videoRover");
+
+socket.on('camera-ok', (data) => {
+  var videoStrem = new Blob([new Uint8Array(data)], { type: "video/webm;codecs=vp8" });
+  video.src = URL.createObjectURL( videoStrem );
+  
+
 });
