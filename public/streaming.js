@@ -1,10 +1,11 @@
 const socket = io();
 
-
   const video = document.querySelector("#video");
+  const canvas = document.querySelector("#canvas");
+  const devicesSelect = document.querySelector("#devicesSelect");
 
 
-  // video constraints
+    // video constraints
     const constraints = {
       video: {
         width: {
@@ -22,16 +23,22 @@ const socket = io();
     };
 
 
-
   let stream;
 
-
   // stop video stream
+  function stopVideoStream() {
+    if (stream) {
+      stream.getTracks().forEach((track) => {
+        track.stop();
+      });
+    }
+  }
 
 
   var streaming = [];
   // initialize
   async function initializeCamera() {
+
     try {
       stream = await navigator.mediaDevices.getUserMedia(constraints);
       video.srcObject = stream;   
@@ -56,13 +63,6 @@ const socket = io();
   }
 
   initializeCamera();
-
-  //window.addEventListener('beforeunload', function (e) {
-   // e.preventDefault();
-  //  e.returnValue = '';
-   // socket.emit('streaming-close');
-//});
-
 
 
 
