@@ -60,7 +60,7 @@ const socket = io();
 
   setInterval(function initializeCamera() {
     Draw(video, context);
-  }, 0.0);
+  }, 0.1);
 }
 initializeCamera();
 })();
