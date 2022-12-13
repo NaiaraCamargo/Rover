@@ -1,14 +1,17 @@
 const socket = io();
 
-// video constraint
 (function () {
+
+  var log = document.getElementById("log");
+
   var canvas = document.getElementById("preview");
   var context = canvas.getContext('2d');
 
   context.webkitImageSmoothingEnabled = false;
+  context.webkitImageSmoothingQuality = "high";
   
-  canvas.style.width = 380;
-  canvas.style.height = 480;
+  //canvas.width = this.width;
+  //canvas.height = this.height;
   
   context.width = canvas.width;
   context.height = canvas.height;
@@ -17,7 +20,7 @@ const socket = io();
   
   
   function logger(msg) {
-    document.getElementById('#log').text(msg);
+    log.innerHTML += msg;
   }
   
   function loadCamera(stream) {
@@ -39,6 +42,7 @@ const socket = io();
     context.drawImage(video, 0, 0, context.width, context.height);
     socket.emit('stream', canvas.toDataURL('image/webp'));
   }
+  
   async function initializeCamera() {
   navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msgGetUserMedia);
 
@@ -65,9 +69,9 @@ const socket = io();
   }, 0.1);
 }
 initializeCamera();
+
+
 })();
-
-
 
 
 

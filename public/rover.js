@@ -114,7 +114,8 @@ function controlls() {
     btnW.style.backgroundColor = "grey";
     btnW.click();
     roverMotor = JSON.stringify(data);
-    socket.emit('rover-motor', roverMotor);
+
+   socket.emit('rover-motor', roverMotor);
 
   }
   if (down) {
@@ -302,4 +303,9 @@ var video = document.querySelector("#play");
 socket.on('stream', (data) => {
   video.src = data;
 
+});
+
+
+socket.on('close-ok', () => {
+  video.src = "";
 });

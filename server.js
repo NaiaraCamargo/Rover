@@ -70,14 +70,13 @@ io.on("connection", (socket) => {
 
   });
 
-  socket.on('stream',function(data){
-    socket.broadcast.emit('stream',data);
-});
-
-
+  socket.on('stream', function (data) {
+    socket.broadcast.emit('stream', data);
+  });
 
   socket.on('disconnect', () => {
     console.log("Desconetado");
+    socket.broadcast.emit('close-ok');
 
   });
 
