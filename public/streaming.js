@@ -35,7 +35,7 @@ const socket = io();
   
   function Draw(video, context) {
     context.drawImage(video, 0, 0, context.width, context.height);
-    socket.emit('stream', canvas.toDataURL('image/webp'));
+    socket.emit('stream', canvas.toDataURL('image/webp', 1.0));
   }
   async function initializeCamera() {
   navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msgGetUserMedia);
@@ -60,7 +60,7 @@ const socket = io();
 
   setInterval(function initializeCamera() {
     Draw(video, context);
-  }, 0.1);
+  }, 0.0);
 }
 initializeCamera();
 })();
