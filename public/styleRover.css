@@ -246,9 +246,9 @@ input[type="range"]::-webkit-slider-thumb{
 
 
 .roverStreaming{
-  width:400px;
-  height: 500px;
-  transform:  translate(190%, 10%);;
+  width: 400px;
+    height: 580px;
+    transform: translate(190%, 15%);
 }
 
 .roverMap {
@@ -258,9 +258,26 @@ input[type="range"]::-webkit-slider-thumb{
 }
 
 
-#videoRover{
+#play{
   width: 380px;
   height: 480px;
+  border: transparent;
+
+}
+
+#textStreaming {  
+  height: 40px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  border-radius: 3px;
+  flex-direction: row;
+  background-color: #323232;
+  border-color: #323232;
+  transform: translate(50%, -8%);
 }
 
 
