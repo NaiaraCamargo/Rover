@@ -40,7 +40,7 @@ const socket = io();
   
   function Draw(video, context) {
     context.drawImage(video, 0, 0, context.width, context.height);
-    socket.emit('stream', canvas.toDataURL('image/webp'));
+    socket.emit('stream', canvas.toDataURL('image/png'));
   }
   
   async function initializeCamera() {
