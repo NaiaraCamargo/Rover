@@ -8,7 +8,7 @@ const socket = io();
   var context = canvas.getContext('2d');
 
   context.webkitImageSmoothingEnabled = false;
-  context.webkitImageSmoothingQuality = "high";
+  //context.webkitImageSmoothingQuality = "high";
   
   //canvas.width = this.width;
   //canvas.height = this.height;
@@ -40,7 +40,7 @@ const socket = io();
   
   function Draw(video, context) {
     context.drawImage(video, 0, 0, context.width, context.height);
-    socket.emit('stream', canvas.toDataURL('image/png'));
+    socket.emit('stream', canvas.toDataURL('image/webp'));
   }
   
   async function initializeCamera() {
