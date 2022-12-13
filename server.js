@@ -70,13 +70,11 @@ io.on("connection", (socket) => {
 
   });
 
- 
+  socket.on('stream',function(data){
+    socket.broadcast.emit('stream',data);
+});
 
-  socket.on('camera-on', (data) => {
-    socket.data = data;
-    console.log(data);
-    socket.broadcast.emit('camera-ok',(data));
-  });
+
 
   socket.on('disconnect', () => {
     console.log("Desconetado");

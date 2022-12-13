@@ -1,12 +1,64 @@
 const socket = io();
 
-  const video = document.querySelector("#video");
-  const canvas = document.querySelector("#canvas");
-  const devicesSelect = document.querySelector("#devicesSelect");
+// video constraint
+(function () {
+  const constraints = {
+    video: {
+      width: {
+        min: 1280,
+        ideal: 1920,
+        max: 2560,
+      },
+      height: {
+        min: 720,
+        ideal: 1080,
+        max: 1440,
+      },
+      facingMode: "environment"
+    },
+  };
+  
+  
+  var canvas = document.getElementById("preview");
+  var context = canvas.getContext('2d');
+  
+  canvas.width = 900;
+  canvas.height = 700;
+  
+  context.width = canvas.width;
+  context.height = canvas.height;
+  
+  var video = document.getElementById("video");
+  
+  
+  function logger(msg) {
+    $('#log').text(msg);
+  }
+  
+  function loadCamera(stream) {
+    try {
+      video.srcObject = stream;
+    }
+  
+    catch (error) {
+      video.src = URL.createObjectURL(stream);
+    }
+    logger("Camera connected");
+  }
+  
+  function loadFail() {
+    logger("Camera not connected");
+  }
+  
+  function Draw(video, context) {
+    context.drawImage(video, 0, 0, context.width, context.height);
+    socket.emit('stream', canvas.toDataURL('image/webp'));
+  }
+  async function initializeCamera() {
+  navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msgGetUserMedia);
 
-
-    // video constraints
-    const constraints = {
+  if (navigator.getUserMedia) {
+    navigator.getUserMedia({
       video: {
         width: {
           min: 1280,
@@ -20,49 +72,15 @@ const socket = io();
         },
         facingMode: "environment"
       },
-    };
-
-
-  let stream;
-
-  // stop video stream
-  function stopVideoStream() {
-    if (stream) {
-      stream.getTracks().forEach((track) => {
-        track.stop();
-      });
-    }
+    }, loadCamera, loadFail);
   }
 
-
-  var streaming = [];
-  // initialize
-  async function initializeCamera() {
-
-    try {
-      stream = await navigator.mediaDevices.getUserMedia(constraints);
-      video.srcObject = stream;   
-
-      const mediaRecorder = new MediaRecorder(stream)
-      let countUploadChunk = 0
-      mediaRecorder.ondataavailable = function (e) {
-      streaming.push(e.data);
-      socket.emit('camera-on', streaming);
-       countUploadChunk++
-     }
-
-    mediaRecorder.start()
-
-    setInterval(() => {
-        mediaRecorder.requestData()
-    }, 2000)    
-
-    } catch (err) {
-      alert("Could not access the camera");
-    }
-  }
-
-  initializeCamera();
+  setInterval(function initializeCamera() {
+    Draw(video, context);
+  }, 0.1);
+}
+initializeCamera();
+})();
 
 
 

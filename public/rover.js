@@ -297,11 +297,9 @@ socket.on('user-disconected', () => {
 
 
 
-let video = document.querySelector("#videoRover");
+var video = document.querySelector("#play");
 
-socket.on('camera-ok', (data) => {
-  var videoStrem = new Blob([new Uint8Array(data)], { type: "video/webm;codecs=vp8" });
-  video.src = URL.createObjectURL( videoStrem );
-  
+socket.on('stream', (data) => {
+  video.src = data;
 
 });
