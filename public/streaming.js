@@ -15,10 +15,7 @@ const socket = io();
   
   var video = document.getElementById("video");
   
-  
-  function logger(msg) {
-    $('#log').text(msg);
-  }
+
   
   function loadCamera(stream) {
     try {
@@ -28,12 +25,9 @@ const socket = io();
     catch (error) {
       video.src = URL.createObjectURL(stream);
     }
-    logger("Camera connected");
+ 
   }
   
-  function loadFail() {
-    logger("Camera not connected");
-  }
   
   function Draw(video, context) {
     context.drawImage(video, 0, 0, context.width, context.height);
@@ -57,7 +51,7 @@ const socket = io();
         },
         facingMode: "environment"
       },
-    }, loadCamera, loadFail);
+    }, loadCamera);
   }
 
   setInterval(function initializeCamera() {
