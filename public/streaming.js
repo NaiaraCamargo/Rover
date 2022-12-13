@@ -4,6 +4,8 @@ const socket = io();
 (function () {
   var canvas = document.getElementById("preview");
   var context = canvas.getContext('2d');
+
+  context.webkitImageSmoothingEnabled = false;
   
   canvas.style.width = 380;
   canvas.style.height = 480;
@@ -35,7 +37,7 @@ const socket = io();
   
   function Draw(video, context) {
     context.drawImage(video, 0, 0, context.width, context.height);
-    socket.emit('stream', canvas.toDataURL('image/webp', 1.0));
+    socket.emit('stream', canvas.toDataURL('image/webp'));
   }
   async function initializeCamera() {
   navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msgGetUserMedia);
