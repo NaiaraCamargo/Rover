@@ -5,8 +5,8 @@ const socket = io();
   var canvas = document.getElementById("preview");
   var context = canvas.getContext('2d');
   
-  canvas.width = 900;
-  canvas.height = 700;
+  canvas.style.width = 380;
+  canvas.style.height = 480;
   
   context.width = canvas.width;
   context.height = canvas.height;
