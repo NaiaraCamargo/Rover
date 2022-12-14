@@ -303,18 +303,25 @@ socket.on('close-ok', () => {
   video.src = "";
 });
 
-
+var ledGet = [];
 
 function ledChecked(checkbox) {
 
   if (checkbox.checked){
-    var checkLed = 1
-    socket.emit('check-led', checkLed); 
+    var data = {
+      "led": 1
+    };
+
+    ledGet = JSON.stringify(data);
+    socket.emit('check-led', ledGet); 
   }
    
   else {
-    var checkLed = 0
-    socket.emit('check-led', checkLed);
+    var data = {
+      "led": 0
+    };
+    ledGet = JSON.stringify(data);
+    socket.emit('check-led', ledGet);
   }
   
     
