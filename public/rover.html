@@ -1,56 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html
+    class="rover-html js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths"
+    lang="pt-br">
 
 <head>
     <title>ROVER</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="styleRover.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
 
 </head>
 
-<body>
-    <div class="splash-background splash-background-dotted template-wrapper theme-pink theme-secondary theme-secondary-black">
+<body class="rover-body" data-max="2097152">
+    <div id="react-root"></div>
+    <div
+        class="splash-background splash-background-dotted template-wrapper theme-pink theme-secondary theme-secondary-black">
         <div class="splash-screen toggle-down " style="position: absolute;">
-            <div class="roverPage" id="roverPage">
-                <div class="roverArea">
+            <div id="geral" style="min-height: 757px;">
+
+                <div class="topbar">
+                    <div id="btn-logout">
+                        <button id="btnLogout" class="btnLog">
+                            <span>
+                                Sair
+                            </span>
+                        </button>
+                    </div>
+
+                    <div id="led">
+                        <label class="switch">
+                            <input id="led" type="checkbox" onchange="ledChecked(this)" required>
+                            <span class="slider round"></span>
+                          </label>
+                          <div class="text-led">LED</div>
+                      
+                    </div>
+                </div>
+
+                <div class="main-container">
+
+
                     <div class="rangePower">
                         <div id="number">0</div>
                         <input type="range" min="0" max="255" value="0" step="1" id="slider" />
                         <div id="textVel">VELOCIDADE ROVER</div>
                     </div>
 
-                    <div class="roverControll">
+                    <div class="rover-controll">
                         <div id="textControll">DIREÇÃO</div>
 
-                        <button type="button" id="btnW" class="btn btn-light">ANDAR</button>
-                        <button type="button" id="btnA" class="btn btn-light">ESQUERDA</button>
-                        <button type="button" id="btnD" class="btn btn-light">DIREITA</button>
-                        <button type="button" id="btnS" class="btn btn-light">RE</button>
-
-
+                        <button type="button" id="btnW" class="btnW btn btn-light">ANDAR</button>
+                        <button type="button" id="btnA" class="btnA btn btn-light">ESQUERDA</button>
+                        <button type="button" id="btnD" class="btnD btn btn-light">DIREITA</button>
+                        <button type="button" id="btnS" class="btnS btn btn-light">RE</button>
+    
+                        <button type="button" id="btnStop" class="btnStop btn btn-light">PARAR</button>
                     </div>
+                 
 
-                    <button type="button" id="btnStop" class="btn btn-light">PARAR</button>
-
-                    <button id="btnLogout" class="btnLog">
-                        <span>
-                            Sair
-                        </span>
-                    </button>
-
-                    <div id="streaming" class="roverStreaming">
+                    <div id="transmissionRover" class="transmission">
                         <div id="textStreaming">TRANSMISSÃO</div>
-                        <img style="position: absolute; left: 0; height: 0; width: 380px; height:480px" id="play">
-                       
-
-                        <div class="roverMap">
-
-                        </div>
+                        <img  id="play">
 
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>

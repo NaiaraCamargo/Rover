@@ -6,6 +6,7 @@ let btnS = document.getElementById('btnS');
 let btnD = document.getElementById('btnD');
 let btnStop = document.getElementById('btnStop');
 
+
 let slider = document.getElementById("slider");
 let number = document.getElementById("number");
 
@@ -274,14 +275,6 @@ function controlls() {
 
 }
 
-let map;
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById('roverMap'), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
-}
 
 
 btnLogout.addEventListener('click', (e) => {
@@ -309,3 +302,21 @@ socket.on('stream', (data) => {
 socket.on('close-ok', () => {
   video.src = "";
 });
+
+
+
+function ledChecked(checkbox) {
+
+  if (checkbox.checked){
+    var checkLed = 1
+    socket.emit('check-led', checkLed); 
+  }
+   
+  else {
+    var checkLed = 0
+    socket.emit('check-led', checkLed);
+  }
+  
+    
+}
+

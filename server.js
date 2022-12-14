@@ -29,7 +29,7 @@ app.set(express.json());
 // landing
 let connectedUser = "";
 let jsonRover = [];
-let streaming = [];
+let led = "";
 
 io.on("connection", (socket) => {
   console.log(socket.id);
@@ -72,6 +72,17 @@ io.on("connection", (socket) => {
 
   socket.on('stream', function (data) {
     socket.broadcast.emit('stream', data);
+  });
+
+  socket.on('check-led', (checkLed) => {
+    socket.checkLed = checkLed;
+    led = checkLed
+    console.log("Led:" + checkLed);
+
+    app.get("/ledGet", (req, res) => {
+      res.send(checkLed);
+    });
+
   });
 
   socket.on('disconnect', () => {
